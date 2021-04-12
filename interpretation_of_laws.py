@@ -52,7 +52,7 @@ class Ui_Dialog(object):
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+        Dialog.setWindowTitle(_translate("Dialog", "營造業歷年法規匯入程式 for 二科"))
         self.checkOK.setText(_translate("Dialog", "確定"))
         self.checkCancel.setText(_translate("Dialog", "取消"))
         self.checkBrowse.setText(_translate("Dialog", "瀏覽"))
