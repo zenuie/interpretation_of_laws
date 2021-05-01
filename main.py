@@ -61,6 +61,7 @@ class main_windows(QMainWindow, Ui_Dialog):
     def ok_event(self):
         """正則"""
         # 資料夾名稱正則
+        global browse_name
         file_regex = r'[^/]+[.$]'
 
         file_name = self.label.text()
@@ -73,13 +74,9 @@ class main_windows(QMainWindow, Ui_Dialog):
         # herf取數字正則
         herf_num_regex = r'[0-9]'
 
-        herf_chinese_regex = r'[\D]'
-
         herf_name = browse_name
 
         herf_num_matches = ''.join(re.findall(herf_num_regex, herf_name))
-
-        herf_chinese_matches = ''.join(re.findall(herf_chinese_regex, herf_name))
 
         """PDF converter2 JPG"""
         pdf_name = self.label.text()
