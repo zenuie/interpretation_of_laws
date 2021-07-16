@@ -147,27 +147,31 @@ class main_windows(QMainWindow, Ui_Dialog):
             txt = info.read()
         soup = BeautifulSoup(txt, 'html.parser')
         laws_comment = soup.new_string("{}第{}條".format(self.regulation.currentText(), self.article.value()), Comment)
-        # 左側選單
+        # 選單
         if soup.find(id='{}no{}'.format(laws_dict[self.regulation.currentText()], self.article.value())) is None:
 
-            """左側選單html新增項目框架"""
+            """選單html code 新增項目框架"""
             li_div = soup.new_tag('li', attrs={
                 'id': '{}no{}'.format(laws_dict[self.regulation.currentText()], self.article.value())})
             a_laws = soup.new_tag('a', attrs={
                 'href': '#{}{}'.format(laws_dict[self.regulation.currentText()], self.article.value()),
-                'class': 'nav-header collapsed',
-                'data-toggle': 'collapse'})
+                'class': 'has-submenu',
+                'aria-haspopup': 'true',
+                'aria-expanded':'false',
+            })
             a_laws.string = '第{}條'.format(self.article.value())
             span = soup.new_tag('span', attrs={'class': 'pull-right glyphicon glyphicon-chevron-down'})
             ul = soup.new_tag('ul', attrs={
                 'id': '{}{}'.format(laws_dict[self.regulation.currentText()], self.article.value()),
-                'class': 'nav nav-list collapse thridmenu',
-                'style': 'height: 0px;'})
+                'class': 'has-submenu',
+                'aria-haspopup': 'true',
+                'aria-expanded':'false',
+            })
             li = soup.new_tag('li')
             a = soup.new_tag('a', attrs={'href': '#{}A'.format(herf_num_matches)})
             a.string = '{}'.format(herf_name)
 
-            """右側主畫面html新增項目框架"""
+            """右側主畫面html code 新增項目框架"""
             h4 = soup.new_tag('h4')
             h4.string = '第{}條'.format(self.article.value())
             right_div = soup.new_tag('div', attrs={
@@ -190,7 +194,7 @@ class main_windows(QMainWindow, Ui_Dialog):
                         title = soup.find(id='{}'.format(laws_dict[self.regulation.currentText()]))
                         title.insert(1, laws_comment)
                         title.insert(1, li_div)
-                        main_laws = soup.find(id='main{}'.format(laws_dict[self.regulation.currentText()]))
+                        main_laws = soup.find(id='main{}title'.format(laws_dict[self.regulation.currentText()]))
                         main_laws.insert(1, right_div)
                     else:
                         title = soup.find(id='{}no{}'.format(laws_dict[self.regulation.currentText()], laws_num))
