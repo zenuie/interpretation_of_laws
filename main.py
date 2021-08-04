@@ -80,7 +80,7 @@ class main_windows(QMainWindow, Ui_Dialog):
 
         """PDF converter2 JPG"""
         pdf_name = self.label.text()
-        pages = convert_from_path(pdf_name, 500, poppler_path='C:/poppler-0.68.0/bin')
+        pages = convert_from_path(pdf_name, 500)
         for page_number, page in enumerate(pages):
             page.save(pdf_name[:-4] + str(page_number) + '.jpg', "JPEG")
             break
